@@ -1,0 +1,9 @@
+{
+    "test": {
+        "file_content": "This is the result"
+    },
+    "interfaces": {
+        "string": "test string",
+        "float64": 1.12345
+    }
+}
