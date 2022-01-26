@@ -35,6 +35,22 @@ func TestGetFileContents(t *testing.T) {
 	}
 }
 
+func TestFileConfigs(t *testing.T) {
+	conf, err := FileConfigs("test_file.json")
+	if err != nil {
+		t.Fatal(err)
+	}
+	test, err := conf.Extract("test/file_content")
+	if err != nil {
+		t.Fatal(err)
+	}
+	expected := "This is the result"
+	res := StringInterface(test)
+	if res != expected {
+		t.Fatalf("expected file config to be '%s', got '%s'", expected, res)
+	}
+}
+
 func TestInterfaceFunctions(t *testing.T) {
 	js, err := testFile()
 	if err != nil {

@@ -5,6 +5,8 @@ import (
 	"os"
 	"os/exec"
 	"strings"
+
+	jsonextract "github.com/blainemoser/JsonExtract"
 )
 
 // BaseDir gets the base directory
@@ -40,6 +42,19 @@ func GetFileContent(name string) ([]byte, error) {
 		return nil, err
 	}
 	return b, nil
+}
+
+// FileConfigs returns a jsonextract from a JSON file
+func FileConfigs(path string) (jsonextract.JSONExtract, error) {
+	b, err := GetFileContent(path)
+	if err != nil {
+		return jsonextract.JSONExtract{}, err
+	}
+	js := string(b)
+	conf := jsonextract.JSONExtract{
+		RawJSON: js,
+	}
+	return conf, nil
 }
 
 // Float64Interface checks if interface is a float64 and returns it if so
