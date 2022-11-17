@@ -32,6 +32,7 @@ func GetFileContent(name string) ([]byte, error) {
 	if err != nil {
 		return nil, err
 	}
+	defer file.Close()
 	stat, err := file.Stat()
 	if err != nil {
 		return nil, err
